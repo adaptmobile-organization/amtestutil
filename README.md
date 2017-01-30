@@ -1,4 +1,4 @@
-# amutestutil
+# amtestutil
 Adaptmobile util for testing (see Aeldresagen for example of usage)
 
 ## Installation
