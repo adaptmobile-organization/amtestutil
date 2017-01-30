@@ -52,7 +52,22 @@ Notice that the support-annotations need to match the projects supportlib versio
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 #### Add debug manifest (allows enabling and disabling of animations on your test device)
+In order to enable/disable animations automatic a manifest with the SET_ANIMATION_SCALE permission must be created in the directory:
+{projectname}/app/src/debug/AndroidManifest.xml
 
+With the contents:
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <manifest
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        package="dk.aeldresagen.android">
+
+        <!-- For espresso testing purposes, this is removed in live builds, but not in dev builds -->
+        <uses-permission android:name="android.permission.SET_ANIMATION_SCALE"/>
+
+    </manifest>
+
+This way the needed permission is not used in release builds.
 
 ## Usage
 UI tests are instrumentation tests and needs to be in the directory:
