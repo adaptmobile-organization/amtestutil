@@ -109,3 +109,7 @@ If you find/need methods that are useful, please add them to this repository.
 ## Jitpack
 
   https://jitpack.io/#adaptmobile-organization/amutestutil
+  
+## Questions or comments
+In case of questions or comments contact Bjarke Severinsen.
+bjarke@adaptmobile.dk or hipchat.
