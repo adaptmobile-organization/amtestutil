@@ -1,4 +1,4 @@
-package dk.adaptmobile.amtestutil.uitest;
+package dk.adaptmobile.amtestutil.uitest.matchers;
 
 import android.support.annotation.IdRes;
 import android.support.test.espresso.PerformException;
@@ -11,6 +11,9 @@ import android.view.View;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
+
+import dk.adaptmobile.amtestutil.uitest.matchers.RecyclerViewInsideRecyclerViewMatcher;
+import dk.adaptmobile.amtestutil.uitest.matchers.RecyclerViewMatcher;
 
 /**
  * Created by dannyroa on 5/9/15.

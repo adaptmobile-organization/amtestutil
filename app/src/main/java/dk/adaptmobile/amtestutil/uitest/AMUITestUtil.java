@@ -23,8 +23,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFro
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static dk.adaptmobile.amtestutil.uitest.TestUtils.withChildRecyclerView;
-import static dk.adaptmobile.amtestutil.uitest.TestUtils.withRecyclerView;
+import static dk.adaptmobile.amtestutil.uitest.matchers.TestUtils.withChildRecyclerView;
+import static dk.adaptmobile.amtestutil.uitest.matchers.TestUtils.withRecyclerView;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNot.not;
 
