@@ -1,5 +1,6 @@
 package dk.adaptmobile.amtestutil.uitest;
 
+import android.app.Instrumentation;
 import android.content.Context;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
@@ -9,6 +10,7 @@ import android.widget.TimePicker;
 
 import org.hamcrest.Matcher;
 
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -138,11 +140,10 @@ public class AMUITestUtil {
         view.check(matches(withText(text)));
     }
 
-    public static ViewInteraction viewHasTextWithBreak(Context context, int id, int stringResource){
-        String text = context.getString(stringResource);
-        text.replaceAll("<br>", "\\n");
-        text.replaceAll("<br/>", "\\n");
-
+    public static ViewInteraction viewHasTextWithBreak(Instrumentation instrumentation, int id, int stringResource) {
+        String text = instrumentation.getTargetContext().getResources().getString(stringResource);
+        text = text.replaceAll("<br>", "\n");
+        text = text.replaceAll("<br/>", "\n");
         ViewInteraction view = findViewById(id);
         viewHasText(view, text);
         return view;
@@ -160,16 +161,16 @@ public class AMUITestUtil {
         return view;
     }
 
-    
+
     //////// ------------------ LISTVIEW ------------------ ////////
 
-    public static void assertListViewChildItemAtPosition(int listView, int position, int childView, Matcher... matchers){
+    public static void assertListViewChildItemAtPosition(int listView, int position, int childView, Matcher... matchers) {
         onData(anything())
                 .inAdapterView(withId(listView))
                 .atPosition(position).onChildView(withId(childView)).check(matches(allOf(matchers)));
     }
 
-    public static void assertListViewItemAtPosition(int listView, int position, Matcher... matchers){
+    public static void assertListViewItemAtPosition(int listView, int position, Matcher... matchers) {
         onData(anything())
                 .inAdapterView(withId(listView))
                 .atPosition(position).check(matches(allOf(matchers)));
