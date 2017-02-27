@@ -144,6 +144,10 @@ public class AMUITestUtil {
         String text = instrumentation.getTargetContext().getResources().getString(stringResource);
         text = text.replaceAll("<br>", "\n");
         text = text.replaceAll("<br/>", "\n");
+        text = text.replaceAll("<b>", " ");
+        text = text.replaceAll("</b>", " ");
+        text = text.replaceAll("<i>", " ");
+        text = text.replaceAll("</i>", " ");
         ViewInteraction view = findViewById(id);
         viewHasText(view, text);
         return view;
