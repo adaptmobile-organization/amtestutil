@@ -12,13 +12,12 @@ import android.view.View;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 
-import dk.adaptmobile.amtestutil.uitest.matchers.RecyclerViewInsideRecyclerViewMatcher;
-import dk.adaptmobile.amtestutil.uitest.matchers.RecyclerViewMatcher;
 
 /**
  * Created by dannyroa on 5/9/15.
+ * https://github.com/dannyroa/espresso-samples/tree/master/RecyclerView/app/src/androidTest/java/com/dannyroa/espresso_samples/recyclerview
  */
-public class TestUtils {
+public class RecyclerViewMatcherHelper {
 
     public static <VH extends RecyclerView.ViewHolder> ViewAction actionOnItemViewAtPosition(int position, @IdRes int viewId, ViewAction viewAction) {
         return new ActionOnItemViewAtPositionViewAction(position, viewId, viewAction);
@@ -103,5 +102,6 @@ public class TestUtils {
     public static RecyclerViewInsideRecyclerViewMatcher withChildRecyclerView(final int recyclerViewId, final int childRecyclerViewId) {
         return new RecyclerViewInsideRecyclerViewMatcher(recyclerViewId, childRecyclerViewId);
     }
+
 
 }

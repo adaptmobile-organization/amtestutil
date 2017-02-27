@@ -1,4 +1,4 @@
-package dk.adaptmobile.amtestutil.uitest;
+package dk.adaptmobile.amtestutil.uitest.other;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

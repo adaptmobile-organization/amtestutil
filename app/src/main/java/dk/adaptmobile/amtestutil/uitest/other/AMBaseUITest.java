@@ -1,4 +1,4 @@
-package dk.adaptmobile.amtestutil.uitest;
+package dk.adaptmobile.amtestutil.uitest.other;
 
 /**
  * Created by bjarkeseverinsen on 28/01/2017.
