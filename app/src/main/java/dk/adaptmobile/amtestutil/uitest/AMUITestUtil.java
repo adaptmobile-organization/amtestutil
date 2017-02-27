@@ -8,6 +8,7 @@ import android.widget.TimePicker;
 
 import org.hamcrest.Matcher;
 
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -26,6 +27,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static dk.adaptmobile.amtestutil.uitest.matchers.TestUtils.withChildRecyclerView;
 import static dk.adaptmobile.amtestutil.uitest.matchers.TestUtils.withRecyclerView;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.core.IsNot.not;
 
 /**
@@ -146,6 +148,29 @@ public class AMUITestUtil {
         viewHasText(view, text);
         return view;
     }
+
+    //////// ------------------ LISTVIEW ------------------ ////////
+
+    public static void assertListViewChildItemAtPosition(int listView, int position, int childView, Matcher... matchers){
+        onData(anything())
+                .inAdapterView(withId(listView))
+                .atPosition(position).onChildView(withId(childView)).check(matches(allOf(matchers)));
+    }
+
+    public static void assertListViewItemAtPosition(int listView, int position, Matcher... matchers){
+        onData(anything())
+                .inAdapterView(withId(listView))
+                .atPosition(position).check(matches(allOf(matchers)));
+    }
+
+    public static void clickListViewItemAtPostition(int listView, int position) {
+        onData(anything())
+                .inAdapterView(withId(listView))
+                .atPosition(position)
+                .perform(click());
+    }
+
+    //////// ------------------ RECYCLERVIEW ------------------ ////////
 
     public static ViewInteraction assertOnRecyclerViewItem(int recyclerViewId, int position, int viewId, Matcher... matchers) {
         return onView(withRecyclerView(recyclerViewId).atPositionOnView(position, viewId)).check(matches(allOf(matchers)));
