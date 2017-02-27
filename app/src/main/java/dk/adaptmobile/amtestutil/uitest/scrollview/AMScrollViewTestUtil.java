@@ -11,11 +11,11 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 public class AMScrollViewTestUtil {
 
-    private void scrollToView(int view){
+    public static void scrollToView(int view){
         onView(withId(view)).perform(scrollTo());
     }
 
-    private void scrollToViewAndClick(int view){
+    private static void scrollToViewAndClick(int view){
         onView(withId(view)).perform(scrollTo(), click());
     }
 
