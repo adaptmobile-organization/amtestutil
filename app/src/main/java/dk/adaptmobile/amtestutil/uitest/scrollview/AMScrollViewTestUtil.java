@@ -15,7 +15,7 @@ public class AMScrollViewTestUtil {
         onView(withId(view)).perform(scrollTo());
     }
 
-    private static void scrollToViewAndClick(int view){
+    public static void scrollToViewAndClick(int view){
         onView(withId(view)).perform(scrollTo(), click());
     }
 
