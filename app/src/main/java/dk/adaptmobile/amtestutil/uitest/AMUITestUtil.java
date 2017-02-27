@@ -1,5 +1,6 @@
 package dk.adaptmobile.amtestutil.uitest;
 
+import android.content.Context;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.contrib.RecyclerViewActions;
@@ -137,6 +138,16 @@ public class AMUITestUtil {
         view.check(matches(withText(text)));
     }
 
+    public static ViewInteraction viewHasTextWithBreak(Context context, int id, int stringResource){
+        String text = context.getString(stringResource);
+        text.replaceAll("<br>", "\\n");
+        text.replaceAll("<br/>", "\\n");
+
+        ViewInteraction view = findViewById(id);
+        viewHasText(view, text);
+        return view;
+    }
+
     public static ViewInteraction viewHasText(int id, int stringResource) {
         ViewInteraction view = findViewById(id);
         viewHasText(view, stringResource);
@@ -149,6 +160,7 @@ public class AMUITestUtil {
         return view;
     }
 
+    
     //////// ------------------ LISTVIEW ------------------ ////////
 
     public static void assertListViewChildItemAtPosition(int listView, int position, int childView, Matcher... matchers){
