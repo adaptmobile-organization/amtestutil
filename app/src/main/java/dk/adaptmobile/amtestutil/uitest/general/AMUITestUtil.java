@@ -14,7 +14,9 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static dk.adaptmobile.amtestutil.uitest.matchers.AMMatchers.first;
 import static dk.adaptmobile.amtestutil.uitest.matchers.AMMatchers.isNotDisplayed;
+import static dk.adaptmobile.amtestutil.uitest.matchers.AMMatchers.withIndex;
 import static org.hamcrest.Matchers.allOf;
 
 /**
@@ -23,70 +25,65 @@ import static org.hamcrest.Matchers.allOf;
 
 public class AMUITestUtil {
 
-    public static ViewInteraction findViewById(int id) {
-        return onView(allOf(withId(id)));
+    public static ViewInteraction findView(Matcher... matchers) {
+        return onView(allOf(matchers));
     }
 
+    public static ViewInteraction findViewById(int id) {
+        return onView(withId(id));
+    }
+
+    public static ViewInteraction findViewByText(String text) {
+        return onView(withText(text));
+    }
 
     // ASSERTIONS //
     public static ViewInteraction assertView(int id, Matcher... matchers) {
-        ViewInteraction view = findViewById(id);
-        assertView(view, matchers);
-        return view;
+        return assertView(findViewById(id), matchers);
     }
 
-    public static void assertView(ViewInteraction view, Matcher... matchers) {
-        view.check(matches(allOf(matchers)));
+    public static ViewInteraction assertView(ViewInteraction view, Matcher... matchers) {
+        return view.check(matches(allOf(matchers)));
     }
 
-    public static void viewIsDisplayed(ViewInteraction view) {
-        view.check(matches(isDisplayed()));
+    public static ViewInteraction viewIsDisplayed(ViewInteraction view) {
+        return view.check(matches(isDisplayed()));
     }
 
     public static ViewInteraction viewIsDisplayed(int id) {
-        ViewInteraction view = findViewById(id);
-        viewIsDisplayed(view);
-        return view;
+        return viewIsDisplayed(findViewById(id));
     }
 
-    public static void viewIsNotDisplayed(ViewInteraction view) {
-        view.check(matches(isNotDisplayed()));
+    public static ViewInteraction viewIsNotDisplayed(ViewInteraction view) {
+        return view.check(matches(isNotDisplayed()));
     }
 
     public static ViewInteraction viewIsNotDisplayed(int id) {
-        ViewInteraction view = findViewById(id);
-        viewIsNotDisplayed(view);
-        return view;
+        return viewIsNotDisplayed(findViewById(id));
     }
 
-    public static void viewDoesNotExist(ViewInteraction view) {
-        view.check(doesNotExist());
+    public static ViewInteraction viewDoesNotExist(ViewInteraction view) {
+        return view.check(doesNotExist());
     }
 
     public static ViewInteraction viewDoesNotExist(int id) {
-        ViewInteraction view = findViewById(id);
-        viewDoesNotExist(view);
-        return view;
+        return viewDoesNotExist(findViewById(id));
     }
 
-    public static void viewHasText(ViewInteraction view, int stringResource) {
-        view.check(matches(withText(stringResource)));
+    public static ViewInteraction viewHasText(ViewInteraction view, int stringResource) {
+        return view.check(matches(withText(stringResource)));
     }
 
-    public static void viewHasText(ViewInteraction view, String text) {
-        view.check(matches(withText(text)));
+    public static ViewInteraction viewHasText(ViewInteraction view, String text) {
+        return view.check(matches(withText(text)));
     }
 
     public static ViewInteraction viewHasText(int id, int stringResource) {
-        ViewInteraction view = findViewById(id);
-        viewHasText(view, stringResource);
-        return view;
+        return viewHasText(findViewById(id), stringResource);
     }
 
     public static ViewInteraction viewHasText(int id, String text) {
-        ViewInteraction view = findViewById(id);
-        viewHasText(view, text);
-        return view;
+        return viewHasText(findViewById(id), text);
     }
 
     public static ViewInteraction viewHasTextWithHtml(Instrumentation instrumentation, int id, int stringResource) {
@@ -97,20 +94,32 @@ public class AMUITestUtil {
         text = text.replaceAll("</b>", "");
         text = text.replaceAll("<i>", "");
         text = text.replaceAll("</i>", "");
-        ViewInteraction view = findViewById(id);
-        viewHasText(view, text);
-        return view;
+        return viewHasText(findViewById(id), text);
     }
 
     // CLICKS //
-    public static ViewInteraction clickView(int id) {
-        ViewInteraction view = findViewById(id);
-        clickView(view);
-        return view;
+    public static ViewInteraction clickView(Matcher... matchers) {
+        return clickView(findView(matchers));
     }
 
-    public static void clickView(ViewInteraction view) {
-        view.perform(click());
+    public static ViewInteraction clickView(int id) {
+        return clickView(findViewById(id));
+    }
+
+    public static ViewInteraction clickView(ViewInteraction view) {
+        return view.perform(click());
+    }
+
+    public static ViewInteraction clickView(String text) {
+        return clickView(findViewByText(text));
+    }
+
+    public static ViewInteraction clickFirstView(int id) {
+        return clickView(findView(first(withId(id))));
+    }
+
+    public static ViewInteraction clickFirstView(String text) {
+        return clickView(findView(first(withText(text))));
     }
 
     public static void pressKeyboardActionButton(ViewInteraction view) {
