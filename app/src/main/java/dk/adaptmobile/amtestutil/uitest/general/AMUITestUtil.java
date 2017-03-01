@@ -18,6 +18,7 @@ import static dk.adaptmobile.amtestutil.uitest.matchers.AMMatchers.first;
 import static dk.adaptmobile.amtestutil.uitest.matchers.AMMatchers.isNotDisplayed;
 import static dk.adaptmobile.amtestutil.uitest.matchers.AMMatchers.withIndex;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.endsWith;
 
 /**
  * Created by bjarkeseverinsen on 26/01/2017.
@@ -120,6 +121,10 @@ public class AMUITestUtil {
 
     public static ViewInteraction clickFirstView(String text) {
         return clickView(findView(first(withText(text))));
+    }
+
+    public static ViewInteraction clickFirstViewTextEndsWith(String text){
+        return clickView(first(withText(endsWith(text))));
     }
 
     public static void pressKeyboardActionButton(ViewInteraction view) {
