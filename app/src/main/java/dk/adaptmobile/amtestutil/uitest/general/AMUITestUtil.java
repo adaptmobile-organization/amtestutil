@@ -2,6 +2,7 @@ package dk.adaptmobile.amtestutil.uitest.general;
 
 import android.app.Instrumentation;
 import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.action.ViewActions;
 
 import org.hamcrest.Matcher;
 
@@ -9,6 +10,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
+import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -17,6 +19,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static dk.adaptmobile.amtestutil.uitest.matchers.AMMatchers.first;
 import static dk.adaptmobile.amtestutil.uitest.matchers.AMMatchers.isNotDisplayed;
 import static dk.adaptmobile.amtestutil.uitest.matchers.AMMatchers.withIndex;
+import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.endsWith;
 
@@ -129,6 +132,22 @@ public class AMUITestUtil {
 
     public static void pressKeyboardActionButton(ViewInteraction view) {
         view.perform(pressImeActionButton());
+    }
+
+    public static void swipeLeft(int id){
+        findViewById(id).perform(ViewActions.swipeLeft());
+    }
+
+    public static void swipeRight(int id){
+        findViewById(id).perform(ViewActions.swipeRight());
+    }
+
+    public static void swipeUp(int id){
+        findViewById(id).perform(ViewActions.swipeUp());
+    }
+
+    public static void swipeDown(int id){
+        findViewById(id).perform(ViewActions.swipeDown());
     }
 
 }
