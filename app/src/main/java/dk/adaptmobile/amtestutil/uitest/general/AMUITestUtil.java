@@ -34,11 +34,11 @@ public class AMUITestUtil {
     }
 
     public static ViewInteraction findViewById(int id) {
-        return onView(withId(id));
+        return onView(allOf(withId(id), isDisplayed()));
     }
 
     public static ViewInteraction findViewByText(String text) {
-        return onView(withText(text));
+        return onView(allOf(withText(text), isDisplayed()));
     }
 
     // ASSERTIONS //
