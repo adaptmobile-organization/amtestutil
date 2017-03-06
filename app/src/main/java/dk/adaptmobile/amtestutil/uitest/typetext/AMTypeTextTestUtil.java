@@ -13,27 +13,25 @@ import static dk.adaptmobile.amtestutil.uitest.general.AMUITestUtil.findViewById
 
 public class AMTypeTextTestUtil {
 
+    public static void typeTextInView(int viewId, String text, boolean closeKeyboardAfterwards) {
+        typeTextInView(findViewById(viewId), text, closeKeyboardAfterwards);
+    }
+
     public static void typeTextInView(ViewInteraction view, String text, boolean closeKeyboardAfterwards) {
         //ESPRESSO DOES NOT HANDLE Æ, Ø, Å, use replaceText instead if you HAVE TO test words with these chars
-        if (closeKeyboardAfterwards) {
-            view.perform(typeText(text), closeSoftKeyboard());
-        } else {
-            view.perform(typeText(text));
-        }
-    }
 
-    public static void typeTextInView(int viewId, String text, boolean closeKeyboardAfterwards) {
-        //ESPRESSO DOES NOT HANDLE Æ, Ø, Å, use replaceText instead if you HAVE TO test words with these chars
-        ViewInteraction view = findViewById(viewId);
-        if (closeKeyboardAfterwards) {
-            view.perform(typeText(text), closeSoftKeyboard());
-        } else {
-            view.perform(typeText(text));
-        }
-    }
+        String lowerCaseText = text.toLowerCase();
+        boolean containsDanishLetter = lowerCaseText.contains("æ") || lowerCaseText.contains("ø") || lowerCaseText.contains("å");
 
-    public static void replaceTextInView(ViewInteraction view, String text) {
-        view.perform(replaceText(text));
+        if (!containsDanishLetter) {
+            view.perform(typeText(text));
+        } else {
+            view.perform(replaceText(text));
+        }
+
+        if (closeKeyboardAfterwards) {
+            closeKeyBoard(view);
+        }
     }
 
     public static void closeKeyBoard(ViewInteraction view) {
