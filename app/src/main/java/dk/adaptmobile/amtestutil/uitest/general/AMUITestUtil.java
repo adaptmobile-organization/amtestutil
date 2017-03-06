@@ -130,8 +130,12 @@ public class AMUITestUtil {
         return clickView(first(withText(endsWith(text))));
     }
 
-    public static void pressKeyboardActionButton(ViewInteraction view) {
-        view.perform(pressImeActionButton());
+    public static ViewInteraction pressKeyboardActionButton(int id) {
+        return pressKeyboardActionButton(findViewById(id));
+    }
+
+    public static ViewInteraction pressKeyboardActionButton(ViewInteraction view) {
+        return view.perform(pressImeActionButton());
     }
 
     public static void swipeLeft(int id){
