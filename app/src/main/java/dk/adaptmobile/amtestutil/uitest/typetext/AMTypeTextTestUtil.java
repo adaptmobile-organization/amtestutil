@@ -34,6 +34,10 @@ public class AMTypeTextTestUtil {
         }
     }
 
+    public static void closeKeyBoard(int id) {
+        closeKeyBoard(findViewById(id));
+    }
+
     public static void closeKeyBoard(ViewInteraction view) {
         view.perform(closeSoftKeyboard());
     }
